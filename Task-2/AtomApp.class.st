@@ -31,8 +31,7 @@ AtomApp >> initialize [
 
 { #category : #initialization }
 AtomApp >> initializeMorphs [
-	| colors i x y mainMorph |
-	colors := Color indexedColors copyFrom: 50 to: 150.
+	| i x y mainMorph |
 	morphs := OrderedCollection new.
 	mainMorph := AtomMorph new bounds: (0 @ 0 extent: 1 @ 1).
 	morphs add: mainMorph.
@@ -58,9 +57,4 @@ AtomApp >> open [
 	morphs first openInWindow.
 	morphs first window extent: 505 @ 530.
 	morphs first extent: 1@1
-]
-
-{ #category : #tests }
-AtomApp >> test [
-	self inspect a
 ]

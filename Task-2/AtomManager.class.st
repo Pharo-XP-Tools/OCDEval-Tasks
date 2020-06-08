@@ -70,7 +70,9 @@ AtomManager >> initalizeColorPickers [
 
 { #category : #initialize }
 AtomManager >> initialize [ 
-	AtomApp announcer when: AtomColorChangeRequest send: #requestColorChange: to: self
+	AtomApp announcer when: AtomActionRequest send: #requestColorChange: to: self.
+	AtomApp announcer when: AtomActionRequest send: #requestSelection: to: self.
+	AtomApp announcer when: AtomActionRequest send: #requestDeselection: to: self
 ]
 
 { #category : #accessing }
@@ -85,9 +87,19 @@ AtomManager >> mainMorph: anObject [
 	self initalizeColorPickers 
 ]
 
-{ #category : #events }
-AtomManager >> requestColorChange: anAnnouncement [
-	self changeColor: anAnnouncement atom
+{ #category : #requests }
+AtomManager >> requestColorChange: anAtomRequest [
+	self changeColor: anAtomRequest atom
+]
+
+{ #category : #requests }
+AtomManager >> requestDeselection: anAtomRequest [
+	self deselect: anAtomRequest atom
+]
+
+{ #category : #requests }
+AtomManager >> requestSelection: anAtomRequest [
+	self select: anAtomRequest atom
 ]
 
 { #category : #selection }

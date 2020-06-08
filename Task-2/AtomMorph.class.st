@@ -3,36 +3,20 @@ Class {
 	#superclass : #Morph,
 	#instVars : [
 		'negated',
-		'mainMorph',
-		'selected',
-		'hasSelection',
-		'atomManager'
+		'selected'
 	],
 	#category : #'Task-2'
 }
 
-{ #category : #accessing }
-AtomMorph >> atomManager [
-	(self owner isKindOf: AtomMorph)
-		ifFalse: [ ^ atomManager ].
-	^ self owner atomManager
-]
-
-{ #category : #accessing }
-AtomMorph >> atomManager: anAtomManager [
-	atomManager := anAtomManager
-]
-
 { #category : #'menu actions' }
 AtomMorph >> changeColor [ 
-	"self atomManager changeColor: self."
 	AtomApp announcer announce: (AtomColorChangeRequest on: self).
 	negated := true
 ]
 
 { #category : #'menu actions' }
 AtomMorph >> deselect [
-	self atomManager deselect: self
+	AtomApp announcer announce: (AtomDeselectionRequest on: self)
 ]
 
 { #category : #'events-processing' }
@@ -44,7 +28,7 @@ AtomMorph >> handleMouseLeave: event [
 AtomMorph >> handleMouseMove: event [
 	negated
 		ifTrue: [ ^ self ].
-	selected
+	self isSelected
 		ifTrue: [ ^ self ].
 	self changeColor
 ]
@@ -89,7 +73,13 @@ AtomMorph >> mouseDown: event [
 	self inspect
 ]
 
+{ #category : #printing }
+AtomMorph >> printOn: aStream [
+	aStream nextPutAll: 'Color: '.
+	color printOn: aStream
+]
+
 { #category : #'menu actions' }
 AtomMorph >> select [
-	self atomManager select: self
+	AtomApp announcer announce: (AtomSelectionRequest on: self)
 ]

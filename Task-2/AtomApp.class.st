@@ -15,6 +15,11 @@ AtomApp class >> announcer [
 	^announcer ifNil:[announcer := Announcer new]
 ]
 
+{ #category : #accessing }
+AtomApp class >> reset [
+	announcer := nil
+]
+
 { #category : #'as yet unclassified' }
 AtomApp class >> run [
 	<example>

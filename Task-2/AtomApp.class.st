@@ -18,6 +18,7 @@ AtomApp class >> announcer [
 { #category : #'as yet unclassified' }
 AtomApp class >> run [
 	<example>
+	announcer := Announcer new.
 	self new open
 	
 	

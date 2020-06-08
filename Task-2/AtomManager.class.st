@@ -41,7 +41,7 @@ AtomManager >> colorPickers [
 AtomManager >> deselect: anAtom [
 	|colorPicker|
 	anAtom == mainMorph ifTrue:[^self].
-	colorPicker := colorPickers at: anAtom.
+	colorPicker := colorPickers at: anAtom ifAbsent: [^self].
 	colorPicker setBaseColorFor: anAtom.
 	anAtom isSelected: false
 ]
@@ -83,7 +83,6 @@ AtomManager >> mainMorph [
 { #category : #accessing }
 AtomManager >> mainMorph: anObject [
 	mainMorph := anObject.
-	mainMorph atomManager: self.
 	self initalizeColorPickers 
 ]
 
@@ -105,9 +104,9 @@ AtomManager >> requestSelection: anAtomRequest [
 { #category : #selection }
 AtomManager >> select: anAtom [
 	|colorPicker|
-	anAtom == mainMorph ifTrue:[^self].
-	colorPicker := colorPickers at: anAtom.
+	anAtom == mainMorph ifTrue:[^self].	
 	anAtom isSelected ifTrue:[^anAtom deselect].
+	colorPicker := colorPickers at: anAtom ifAbsent: [^self].
 	colorPicker selectColorFor: anAtom.
 	anAtom isSelected: true
 ]

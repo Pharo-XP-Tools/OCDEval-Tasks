@@ -69,6 +69,7 @@ AtomMorph >> isSelected: bool [
 AtomMorph >> mouseDown: event [
 	event redButtonChanged
 		ifTrue: [ self select.
+			event wasHandled: true.
 			^ self ].
 	self inspect
 ]

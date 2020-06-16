@@ -70,9 +70,9 @@ AtomManager >> initalizeColorPickers [
 
 { #category : #initialize }
 AtomManager >> initialize [ 
-	AtomApp announcer when: AtomActionRequest send: #requestColorChange: to: self.
-	AtomApp announcer when: AtomActionRequest send: #requestSelection: to: self.
-	AtomApp announcer when: AtomActionRequest send: #requestDeselection: to: self
+	AtomApp announcer when: AtomColorChangeRequest send: #requestColorChange: to: self.
+	AtomApp announcer when: AtomSelectionRequest send: #requestSelection: to: self.
+	AtomApp announcer when: AtomDeselectionRequest send: #requestDeselection: to: self
 ]
 
 { #category : #accessing }

@@ -16,6 +16,6 @@ AtomMorphColorPickerStrategy4 >> selectColorFor: anAtomMorph [
 
 { #category : #'as yet unclassified' }
 AtomMorphColorPickerStrategy4 >> setBaseColorFor: anAtomMorph [
-	color ifNil:[color := self availableColors atRandom negated]. 
+	color ifNil:[color := (self availableColors at: 37) negated]. 
 	anAtomMorph color: color
 ]

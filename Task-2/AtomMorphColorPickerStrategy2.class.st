@@ -6,7 +6,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 AtomMorphColorPickerStrategy2 >> changeColorFor: anAtomMorph [
-	anAtomMorph color: anAtomMorph color duller
+	anAtomMorph color: anAtomMorph color duller negated
 ]
 
 { #category : #'as yet unclassified' }

@@ -6,7 +6,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 AtomMorphColorPickerStrategy5 >> changeColorFor: anAtomMorph [
-	anAtomMorph color: (anAtomMorph color alpha: 0.5)
+	anAtomMorph color: (anAtomMorph color alpha: 0.5) negated
 ]
 
 { #category : #'as yet unclassified' }
@@ -16,6 +16,6 @@ AtomMorphColorPickerStrategy5 >> selectColorFor: anAtomMorph [
 
 { #category : #'as yet unclassified' }
 AtomMorphColorPickerStrategy5 >> setBaseColorFor: anAtomMorph [
-	color ifNil:[color := self availableColors at: 10]. 
+	color ifNil:[color := self availableColors at: 15]. 
 	anAtomMorph color: color
 ]

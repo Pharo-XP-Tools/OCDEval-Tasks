@@ -10,6 +10,7 @@ Class {
 
 { #category : #'menu actions' }
 AtomMorph >> changeColor [ 
+	
 	AtomApp announcer announce: (AtomColorChangeRequest on: self).
 	negated := true
 ]

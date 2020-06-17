@@ -5,6 +5,34 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+OCDTaskInstaller class >> installAndConfigureImageForOCDTask1 [
+	<script>
+	
+	Object subclass: #MetaLink
+	uses: TObservable
+	slots: { #arguments. #condition. #conditionArguments. #control => ObservableSlot. #level. #metaObject. #nodes. #selector. #options }
+	classVariables: {  }
+	package: 'Reflectivity-Core'.
+	
+	MetaLinkInstaller compile: 'registerAndInstallPermaLink: aPermaLink forTarget: aSlotOrVar
+	| nodes |
+	(linksRegistry canReinstallPermaLink: aPermaLink)
+		ifFalse: [ ^ self ].
+		
+	linksRegistry registerPermaLink: aPermaLink.	
+	
+	nodes := MetalinkTargetResolver resolveASTLookupFor: aSlotOrVar option: aPermaLink persistenceType.
+	aPermaLink link property: #control whenChangedDo: [aPermaLink link nodes add:nodes asArray first methodNode].
+	aPermaLink targetObjectOrClass link: aPermaLink link toNodes: nodes.'.
+	
+	Object compile: 'link: aMetaLink toNodes: nodes
+	aMetaLink control: #before.
+	nodes do: [ :node | self link: aMetaLink toAST: node ]'.
+	
+	self removeTaskInstaller
+]
+
+{ #category : #'as yet unclassified' }
 OCDTaskInstaller class >> installAndConfigureImageForOCDTask2a [ 
 	<script>
 	

@@ -39,5 +39,5 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2b [
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> removeTaskInstaller [
 	(self confirm: 'Remove installation class from system?') ifFalse:[^self].
-	self removeFromSystemUnlogged 
+	self removeFromSystem
 ]

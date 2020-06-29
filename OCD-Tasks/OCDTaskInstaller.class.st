@@ -29,6 +29,9 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask1 [
 	aMetaLink control: #before.
 	nodes do: [ :node | self link: aMetaLink toAST: node ]'.
 	
+	self package removeClassTag: #'Task-2'.
+	
+	
 	self removeTaskInstaller
 ]
 
@@ -37,6 +40,7 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2a [
 	<script>
 	
 	Color indexedColors at: 82 put: (Color r: 0.19941348973607037 g: 1.0 b: 0.0 alpha: 1.0).
+	TestColor removeFromSystem.
 	
 	AtomManager compile: 'initialize 
 	AtomApp announcer when: AtomActionRequest send: #requestColorChange: to: self.
@@ -44,6 +48,8 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2a [
 	AtomApp announcer when: AtomActionRequest send: #requestDeselection: to: self'.	
 	
 	AtomApp reset.
+	
+	self package removeClassTag: #'Task-1'.
 	
 	self removeTaskInstaller
 ]
@@ -53,6 +59,7 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2b [
 	<script>
 
 	Color indexedColors at: 82 put: (TestColor r: 0.19941348973607037 g: 1.0 b: 0.0 alpha: 1.0).
+	MetaLink package addClass: TestColor.
 	
 	AtomManager compile: 'initialize 
 	AtomApp announcer when: AtomColorChangeRequest send: #requestColorChange: to: self.
@@ -61,11 +68,15 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2b [
 	
 	AtomApp reset.
 	
+	self package removeClassTag: #'Task-1'.
+	
 	self removeTaskInstaller
 ]
 
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> removeTaskInstaller [
 	(self confirm: 'Remove installation class from system?') ifFalse:[^self].
-	self removeFromSystem
+	self removeFromSystem.
+	self package removeClassTag: #Settings.
+	
 ]

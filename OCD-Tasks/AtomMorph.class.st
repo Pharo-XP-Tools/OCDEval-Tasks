@@ -27,11 +27,11 @@ AtomMorph >> handleMouseLeave: event [
 
 { #category : #'events-processing' }
 AtomMorph >> handleMouseMove: event [
-	negated
+	"negated
 		ifTrue: [ ^ self ].
 	self isSelected
 		ifTrue: [ ^ self ].
-	self changeColor
+	self changeColor"
 ]
 
 { #category : #'events-processing' }
@@ -41,12 +41,12 @@ AtomMorph >> handlesMouseDown: evt [
 
 { #category : #'events-processing' }
 AtomMorph >> handlesMouseMove: event [
-	^ true
+	^ false
 ]
 
 { #category : #'events-processing' }
 AtomMorph >> handlesMouseOver: event [
-	^ true
+	^ false
 ]
 
 { #category : #initialization }

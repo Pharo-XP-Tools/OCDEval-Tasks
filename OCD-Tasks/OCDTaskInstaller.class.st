@@ -46,6 +46,14 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2a [
 	AtomApp announcer when: AtomActionRequest send: #requestSelection: to: self.
 	AtomApp announcer when: AtomActionRequest send: #requestDeselection: to: self'.	
 	
+	AtomMorph compile: 'handleMouseMove: event
+	"negated
+		ifTrue: [ ^ self ].
+	self isSelected
+		ifTrue: [ ^ self ].
+	self changeColor"'.
+	AtomMorph compile: 'handlesMouseDown: event
+	^ true'.	
 	AtomApp reset.
 	
 	self removeClassTag: #'Task-1'.	
@@ -62,7 +70,17 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2b [
 	AtomManager compile: 'initialize 
 	AtomApp announcer when: AtomColorChangeRequest send: #requestColorChange: to: self.
 	AtomApp announcer when: AtomSelectionRequest send: #requestSelection: to: self.
-	AtomApp announcer when: AtomDeselectionRequest send: #requestDeselection: to: self'.	
+	AtomApp announcer when: AtomDeselectionRequest send: #requestDeselection: to: self'.
+	
+	AtomMorph compile: 'handleMouseMove: event
+	negated
+		ifTrue: [ ^ self ].
+	self isSelected
+		ifTrue: [ ^ self ].
+	self changeColor'.
+	
+	AtomMorph compile: 'handlesMouseDown: event
+	^ false'.	
 	
 	AtomApp reset.
 	

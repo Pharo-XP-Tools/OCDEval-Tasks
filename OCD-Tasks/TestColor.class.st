@@ -13,14 +13,22 @@ Class {
 
 { #category : #transformations }
 TestColor >> duller [
-	"This is a test methd, it should not be used"
+	"I am a test color for test purposes, I SHOULD NOT BE USED.
+	I store myself in 
+		Color indexedColors at: 82 
+	To restore my original value, evaluate:
+	Color indexedColors at: 82 put: (Color r: 0.19941348973607037 g: 1.0 b: 0.0 alpha: 1.0)"
 	
 	^self negated
 ]
 
 { #category : #transformations }
 TestColor >> negated [
-	"This is a test methd, it should not be used"
+	"I am a test color for test purposes, I SHOULD NOT BE USED.
+	I store myself in 
+		Color indexedColors at: 82 
+	To restore my original value, evaluate:
+	Color indexedColors at: 82 put: (Color r: 0.19941348973607037 g: 1.0 b: 0.0 alpha: 1.0)"
 	^self
 ]
 

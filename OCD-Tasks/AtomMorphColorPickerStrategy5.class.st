@@ -6,7 +6,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 AtomMorphColorPickerStrategy5 >> changeColorFor: anAtomMorph [
-	anAtomMorph color: (anAtomMorph color alpha: 0.5) negated
+	anAtomMorph color: (anAtomMorph color alpha: Random new next) negated
 ]
 
 { #category : #'as yet unclassified' }

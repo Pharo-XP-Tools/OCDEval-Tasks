@@ -11,11 +11,11 @@ AtomMorphColorPickerStrategy1 >> changeColorFor: anAtomMorph [
 
 { #category : #'as yet unclassified' }
 AtomMorphColorPickerStrategy1 >> selectColorFor: anAtomMorph [
-	anAtomMorph color: (anAtomMorph color alpha: 0)
+	anAtomMorph color: (anAtomMorph color alpha: Random new next)
 ]
 
 { #category : #'as yet unclassified' }
 AtomMorphColorPickerStrategy1 >> setBaseColorFor: anAtomMorph [
-	color ifNil:[color := (self availableColors at: 18)lighter]. 
+	color ifNil:[color := (self availableColors at: 18) lighter]. 
 	anAtomMorph color: color
 ]

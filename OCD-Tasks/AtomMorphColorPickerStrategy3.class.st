@@ -11,7 +11,7 @@ AtomMorphColorPickerStrategy3 >> changeColorFor: anAtomMorph [
 
 { #category : #'as yet unclassified' }
 AtomMorphColorPickerStrategy3 >> selectColorFor: anAtomMorph [
-	anAtomMorph color: (anAtomMorph color alpha: 0.5)
+	anAtomMorph color: (anAtomMorph color negated)
 ]
 
 { #category : #'as yet unclassified' }

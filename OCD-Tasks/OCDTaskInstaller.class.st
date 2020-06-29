@@ -29,7 +29,9 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask1 [
 	aMetaLink control: #before.
 	nodes do: [ :node | self link: aMetaLink toAST: node ]'.
 	
+	self package removeClassesMatchingTag: #'Task-2'.
 	self package removeClassTag: #'Task-2'.
+	TestColor removeFromSystem.
 	
 	
 	self removeTaskInstaller
@@ -49,6 +51,7 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2a [
 	
 	AtomApp reset.
 	
+	self package removeClassesMatchingTag: #'Task-1'.
 	self package removeClassTag: #'Task-1'.
 	
 	self removeTaskInstaller
@@ -68,6 +71,7 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2b [
 	
 	AtomApp reset.
 	
+	self package removeClassesMatchingTag: #'Task-1'.
 	self package removeClassTag: #'Task-1'.
 	
 	self removeTaskInstaller

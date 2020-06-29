@@ -8,7 +8,7 @@ Color indexedColors at: 82 put: (Color r: 0.19941348973607037 g: 1.0 b: 0.0 alph
 Class {
 	#name : #TestColor,
 	#superclass : #Color,
-	#category : #OCDSettings
+	#category : #'OCD-Tasks-Settings'
 }
 
 { #category : #transformations }

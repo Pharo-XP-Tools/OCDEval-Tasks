@@ -1,7 +1,7 @@
 Class {
 	#name : #OCDTaskInstaller,
 	#superclass : #Object,
-	#category : #OCDSettings
+	#category : #'OCD-Tasks-Settings'
 }
 
 { #category : #'as yet unclassified' }

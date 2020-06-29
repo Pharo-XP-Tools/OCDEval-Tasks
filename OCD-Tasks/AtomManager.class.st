@@ -8,7 +8,7 @@ Class {
 		'colorPickers',
 		'announcer'
 	],
-	#category : #'OCD-Tasks-Task-2'
+	#category : #'OCD-Tasks-Task2'
 }
 
 { #category : #'instance creation' }

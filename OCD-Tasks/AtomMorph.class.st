@@ -5,7 +5,7 @@ Class {
 		'negated',
 		'selected'
 	],
-	#category : #'OCD-Tasks-Task-2'
+	#category : #'OCD-Tasks-Task2'
 }
 
 { #category : #'menu actions' }

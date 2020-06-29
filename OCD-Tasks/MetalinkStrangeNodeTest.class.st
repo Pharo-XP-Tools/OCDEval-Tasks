@@ -5,7 +5,7 @@ Class {
 		'metalink',
 		'nodes'
 	],
-	#category : #'OCD-Tasks-Task-1'
+	#category : #'OCD-Tasks-Task1'
 }
 
 { #category : #running }

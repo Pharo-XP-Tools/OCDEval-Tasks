@@ -99,7 +99,6 @@ OCDTaskInstaller class >> removeClassTag: aSymbol [
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> removeTaskInstaller [
 	(self confirm: 'Remove installation class from system?') ifFalse:[^self].
-	self removeFromSystem.
-	self removeClassTag: #Settings.
+	self removeFromSystem
 	
 ]

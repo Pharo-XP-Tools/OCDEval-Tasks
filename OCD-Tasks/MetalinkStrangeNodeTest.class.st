@@ -39,11 +39,5 @@ MetalinkStrangeNodeTest >> testCollectionContents [
 		option: #all.
 
 	"There should be 4 nodes in the metalink nodes collection"
-	self assert: nodes size equals: 4.
-
-	"We generate a method with 4 four more accesses to #instVar"
-	ReflectivityExamples2 new generateNewMethodWithInstVarAccess.
-
-	"There should be 4 more nodes in the metalink nodes collection"
-	self assert: nodes size equals: 8
+	self assert: nodes size equals: 4
 ]

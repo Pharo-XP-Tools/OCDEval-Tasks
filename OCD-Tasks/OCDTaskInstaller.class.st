@@ -100,7 +100,12 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2b [
 	self changeColor'.
 	
 	AtomMorph compile: 'handlesMouseDown: event
-	^ false'.	
+	^ true'.	
+	
+	AtomMorph compile: 'mouseDown: event
+	event redButtonChanged
+		ifTrue: [	^ self ].
+	self inspect'.		
 	
 	AtomApp reset.
 	

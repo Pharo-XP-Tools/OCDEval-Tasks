@@ -5,9 +5,15 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+OCDTaskInstaller class >> configureLogDir: aString [
+	(Smalltalk at: #DSSpy) ifAbsent: [ ^ self ].
+	DSSpy logDir: aString
+]
+
+{ #category : #'as yet unclassified' }
 OCDTaskInstaller class >> installAndConfigureImageForOCDTask1 [
 	<script>
-	
+	self configureLogDir: 'Task1'.
 	Object subclass: #MetaLink
 	uses: TObservable
 	slots: { #arguments. #condition. #conditionArguments. #control => ObservableSlot. #level. #metaObject. #nodes. #selector. #options }
@@ -37,7 +43,7 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask1 [
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> installAndConfigureImageForOCDTask2a [ 
 	<script>
-	
+	self configureLogDir: 'Task2a'.	
 	Color indexedColors at: 82 put: (Color r: 0.19941348973607037 g: 1.0 b: 0.0 alpha: 1.0).
 	TestColor removeFromSystem.
 	
@@ -63,7 +69,7 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2a [
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> installAndConfigureImageForOCDTask2b [ 
 	<script>
-
+	self configureLogDir: 'Task1b'.
 	Color indexedColors at: 82 put: (TestColor r: 0.19941348973607037 g: 1.0 b: 0.0 alpha: 1.0).
 	MetaLink package addClass: TestColor.
 	

@@ -6,7 +6,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> configureCommonForTaskNamed: aString [
-	(Smalltalk at: #DSSpy) ifAbsent: [ ^ self ].
+	Smalltalk at: #DSSpy ifAbsent: [ ^ self ].
 	DSSpy logDir: aString.
 	DSSpyInstrumenter instrumentSystem
 ]
@@ -20,7 +20,7 @@ OCDTaskInstaller class >> configureForOCDTaskNamed: aString [
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> configureForTaskNamed: aString [
 	self configureCommonForTaskNamed: aString.
-	(Smalltalk at: #StHaltOnCallCommand) ifAbsent: [ ^ self ].
+	Smalltalk at: #StHaltOnCallCommand ifAbsent: [ ^ self ].
 	StHaltOnCallCommand package removeFromSystem
 ]
 

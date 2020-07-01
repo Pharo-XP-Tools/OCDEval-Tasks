@@ -27,7 +27,6 @@ OCDTaskInstaller class >> configureForTaskNamed: aString [
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> installAndConfigureImageForOCDTask1 [
 	<script>
-	self configureForOCDTaskNamed: 'Task1'.
 	Object subclass: #MetaLink
 	uses: TObservable
 	slots: { #arguments. #condition. #conditionArguments. #control => ObservableSlot. #level. #metaObject. #nodes. #selector. #options }
@@ -51,13 +50,13 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask1 [
 	
 	self removeClassTag: #'Task2'.
 	TestColor removeFromSystem.	
-	self removeTaskInstaller
+	self removeTaskInstaller.
+	self configureForOCDTaskNamed: 'Task1'.
 ]
 
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> installAndConfigureImageForOCDTask2a [ 
-	<script>
-	self configureForOCDTaskNamed: 'Task2a'.	
+	<script>	
 	Color indexedColors at: 82 put: (Color r: 0.19941348973607037 g: 1.0 b: 0.0 alpha: 1.0).
 	TestColor removeFromSystem.
 	
@@ -77,13 +76,14 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2a [
 	AtomApp reset.
 	
 	self removeClassTag: #'Task1'.	
-	self removeTaskInstaller
+	self removeTaskInstaller.
+	self configureForOCDTaskNamed: 'Task2a'.	
 ]
 
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> installAndConfigureImageForOCDTask2b [ 
 	<script>
-	self configureForOCDTaskNamed: 'Task1b'.
+
 	Color indexedColors at: 82 put: (TestColor r: 0.19941348973607037 g: 1.0 b: 0.0 alpha: 1.0).
 	MetaLink package addClass: TestColor.
 	
@@ -105,13 +105,14 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2b [
 	AtomApp reset.
 	
 	self removeClassTag: #'Task1'.	
-	self removeTaskInstaller
+	self removeTaskInstaller.
+	self configureForOCDTaskNamed: 'Task2b'.
 ]
 
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> installAndConfigureImageForTask1 [
 	<script>
-	self configureForTaskNamed: 'Task1'.
+	
 	Object subclass: #MetaLink
 	uses: TObservable
 	slots: { #arguments. #condition. #conditionArguments. #control => ObservableSlot. #level. #metaObject. #nodes. #selector. #options }
@@ -135,13 +136,14 @@ OCDTaskInstaller class >> installAndConfigureImageForTask1 [
 	
 	self removeClassTag: #'Task2'.
 	TestColor removeFromSystem.	
-	self removeTaskInstaller
+	self removeTaskInstaller.
+	self configureForTaskNamed: 'Task1'.
 ]
 
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> installAndConfigureImageForTask2a [ 
 	<script>
-	self configureForTaskNamed: 'Task2a'.	
+	
 	Color indexedColors at: 82 put: (Color r: 0.19941348973607037 g: 1.0 b: 0.0 alpha: 1.0).
 	TestColor removeFromSystem.
 	
@@ -161,13 +163,14 @@ OCDTaskInstaller class >> installAndConfigureImageForTask2a [
 	AtomApp reset.
 	
 	self removeClassTag: #'Task1'.	
-	self removeTaskInstaller
+	self removeTaskInstaller.
+	self configureForTaskNamed: 'Task2a'.	
 ]
 
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> installAndConfigureImageForTask2b [ 
 	<script>
-	self configureForTaskNamed: 'Task1b'.
+	
 	Color indexedColors at: 82 put: (TestColor r: 0.19941348973607037 g: 1.0 b: 0.0 alpha: 1.0).
 	MetaLink package addClass: TestColor.
 	
@@ -189,7 +192,8 @@ OCDTaskInstaller class >> installAndConfigureImageForTask2b [
 	AtomApp reset.
 	
 	self removeClassTag: #'Task1'.	
-	self removeTaskInstaller
+	self removeTaskInstaller.
+	self configureForTaskNamed: 'Task2b'.
 ]
 
 { #category : #'as yet unclassified' }

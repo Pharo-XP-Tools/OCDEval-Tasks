@@ -14,7 +14,7 @@ Class {
 { #category : #adding }
 OCDBox >> addElement: anObject [
 	elements add: anObject.
-	name := 'Box of ', elements size, ' elements'
+	name := 'Box of ', elements size printString, ' elements'
 ]
 
 { #category : #initialization }
@@ -26,6 +26,11 @@ OCDBox >> initialize [
 { #category : #accessing }
 OCDBox >> name: anObject [
 	name := anObject
+]
+
+{ #category : #printing }
+OCDBox >> printString [
+	^name
 ]
 
 { #category : #adding }

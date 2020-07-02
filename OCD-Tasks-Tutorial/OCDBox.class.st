@@ -27,3 +27,9 @@ OCDBox >> initialize [
 OCDBox >> name: anObject [
 	name := anObject
 ]
+
+{ #category : #adding }
+OCDBox >> removeElement: anObject [
+	elements remove: anObject.
+	name := 'Box of ', elements size, ' elements'
+]

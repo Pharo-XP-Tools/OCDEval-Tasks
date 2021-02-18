@@ -48,9 +48,17 @@ AtomMorphArea >> deselect [
 ]
 
 { #category : #'menu actions' }
+AtomMorphArea >> rebuildAllMorphs [
+
+	self removeAllMorphs.
+	self buildMorphs
+]
+
+{ #category : #'menu actions' }
 AtomMorphArea >> select [
 
 	self isSelected: true.
+	self rebuildAllMorphs.
 	self submorphs do: self atomConfigBlock.
 	self configBlock value
 ]

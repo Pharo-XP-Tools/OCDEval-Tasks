@@ -1,6 +1,6 @@
 Class {
 	#name : #AtomMorph,
-	#superclass : #Morph,
+	#superclass : #AtomAbstractMorph,
 	#instVars : [
 		'negated',
 		'selected'

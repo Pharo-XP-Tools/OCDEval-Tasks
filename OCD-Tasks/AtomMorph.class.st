@@ -18,6 +18,18 @@ AtomMorph >> handlesMouseDown: evt [
 	^true
 ]
 
+{ #category : #accessing }
+AtomMorph >> isSelected [
+
+	^ isSelected
+]
+
+{ #category : #accessing }
+AtomMorph >> isSelected: anObject [
+
+	isSelected := anObject
+]
+
 { #category : #'events-processing' }
 AtomMorph >> mouseDown: event [
 

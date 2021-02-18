@@ -26,9 +26,11 @@ AtomManager >> announcer [
 
 { #category : #selection }
 AtomManager >> changeColor: anAtom [
-	|colorPicker|
-	anAtom == mainMorph ifTrue:[^self].
-	colorPicker := colorPickers at: anAtom ifAbsent:[^self].
+
+	| colorPicker |
+	anAtom == mainMorph ifTrue: [ ^ self ].
+	colorPicker := colorPickers at: anAtom ifAbsent: [ ^ self ].
+
 	colorPicker changeColorFor: anAtom
 ]
 
@@ -61,12 +63,15 @@ AtomManager >> initalizeColorPickers [
 
 	colorPickers := IdentityDictionary new.
 	mainMorph submorphs do: [ :submorph | 
-		submorph build: [ :m | 
+		submorph atomBuildBlock: [ :m | 
 			colorPickers
 				at: m
-				put: AtomMorphColorPicker allSubclasses atRandom new ] ].
-	colorPickers keysAndValuesDo: [ :morph :colorPicker | 
-		colorPicker setBaseColorFor: morph ]
+				put: AtomMorphColorPicker allSubclasses atRandom new ].
+		submorph buildBlock: [ 
+			submorph submorphs do: [ :m | 
+				(colorPickers at: m) setBaseColorFor: m ] ].
+		submorph buildMorphs ].
+	mainMorph submorphs do: [ :m | m deselect ]
 ]
 
 { #category : #initialize }

@@ -15,38 +15,9 @@ AtomMorph >> changeColor [
 	negated := true
 ]
 
-{ #category : #'menu actions' }
-AtomMorph >> deselect [
-	AtomApp announcer announce: (AtomDeselectionRequest on: self)
-]
-
-{ #category : #'events-processing' }
-AtomMorph >> handleMouseLeave: event [
-	negated := false.
-]
-
-{ #category : #'events-processing' }
-AtomMorph >> handleMouseMove: event [
-	"negated
-		ifTrue: [ ^ self ].
-	self isSelected
-		ifTrue: [ ^ self ].
-	self changeColor"
-]
-
 { #category : #'events-processing' }
 AtomMorph >> handlesMouseDown: evt [
 	^true
-]
-
-{ #category : #'events-processing' }
-AtomMorph >> handlesMouseMove: event [
-	^ false
-]
-
-{ #category : #'events-processing' }
-AtomMorph >> handlesMouseOver: event [
-	^ false
 ]
 
 { #category : #initialization }
@@ -56,32 +27,22 @@ AtomMorph >> initialize [
 	selected := false
 ]
 
-{ #category : #accessing }
-AtomMorph >> isSelected [
-	^selected
-]
-
-{ #category : #accessing }
-AtomMorph >> isSelected: bool [
-	selected:= bool
-]
-
 { #category : #'events-processing' }
 AtomMorph >> mouseDown: event [
-	event redButtonChanged
-		ifTrue: [ self select.
-			event wasHandled: true.
+
+	event redButtonChanged ifTrue: [ 
+		self isSelected ifFalse: [ 
+			self owner select.
+
 			^ self ].
-	self inspect
+		self changeColor.
+		event wasHandled: true.
+		^ self ].
+	self owner deselect
 ]
 
 { #category : #printing }
 AtomMorph >> printOn: aStream [
 	aStream nextPutAll: 'Color: '.
 	color printOn: aStream
-]
-
-{ #category : #'menu actions' }
-AtomMorph >> select [
-	AtomApp announcer announce: (AtomSelectionRequest on: self)
 ]

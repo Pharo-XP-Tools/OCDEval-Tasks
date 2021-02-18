@@ -40,18 +40,20 @@ AtomApp >> initializeMorphs [
 
 	| x y mainMorph |
 	morphs := OrderedCollection new.
-	mainMorph := AtomMorph new bounds: (0 @ 0 extent: 1 @ 1).
+	mainMorph := AtomMorphArea new bounds: (0 @ 0 extent: 1 @ 1).
 	morphs add: mainMorph.
 
 	x := 0.
 	y := 0.
-	[ x < 400 ] whileTrue: [ 
-		[ y < 400 ] whileTrue: [ 
+	2 timesRepeat: [ 
+		2 timesRepeat: [ 
 			| newMorph |
 			newMorph := AtomMorphArea new.
 			newMorph bounds: (x @ y extent: 200 @ 200).
 			mainMorph addMorph: newMorph.
 			morphs add: newMorph.
+			newMorph isSelected: false.
+
 			y := y + 200 ].
 		x := x + 200.
 		y := 0 ].

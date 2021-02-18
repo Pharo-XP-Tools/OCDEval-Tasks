@@ -47,6 +47,13 @@ AtomMorphArea >> deselect [
 	self submorphs do: [ :m | m color: (Color gray: m color luminance) ]
 ]
 
+{ #category : #building }
+AtomMorphArea >> isSelected: aBoolean [
+
+	super isSelected: aBoolean.
+	self submorphs do: [ :m | m isSelected: aBoolean ]
+]
+
 { #category : #'menu actions' }
 AtomMorphArea >> rebuildAllMorphs [
 

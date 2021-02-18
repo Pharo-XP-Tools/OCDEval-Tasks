@@ -58,14 +58,15 @@ AtomManager >> hasSelection: anObject [
 
 { #category : #initialize }
 AtomManager >> initalizeColorPickers [
+
 	colorPickers := IdentityDictionary new.
-	mainMorph submorphs
-		do: [ :m | 
+	mainMorph submorphs do: [ :submorph | 
+		submorph build: [ :m | 
 			colorPickers
 				at: m
-				put: AtomMorphColorPicker allSubclasses atRandom new ].
-	colorPickers
-		keysAndValuesDo: [ :morph :colorPicker | colorPicker setBaseColorFor: morph ]
+				put: AtomMorphColorPicker allSubclasses atRandom new ] ].
+	colorPickers keysAndValuesDo: [ :morph :colorPicker | 
+		colorPicker setBaseColorFor: morph ]
 ]
 
 { #category : #initialize }

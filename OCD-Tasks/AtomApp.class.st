@@ -37,30 +37,30 @@ AtomApp >> initialize [
 
 { #category : #initialization }
 AtomApp >> initializeMorphs [
-	| i x y mainMorph |
+
+	| x y mainMorph |
 	morphs := OrderedCollection new.
 	mainMorph := AtomMorph new bounds: (0 @ 0 extent: 1 @ 1).
 	morphs add: mainMorph.
-	i := 1.
+
 	x := 0.
 	y := 0.
-	[ x < 500 ]
-		whileTrue: [ [ y < 500 ]
-				whileTrue: [ | newMorph |
-					newMorph := AtomMorph new.
-					newMorph bounds: (x @ y extent: 50 @ 50).
-					mainMorph addMorph: newMorph.
-					morphs add: newMorph.
-					y := y + 50.
-					i := i + 1 ].
-			x := x + 50.
-			y := 0 ].
-	AtomManager on: mainMorph.
+	[ x < 400 ] whileTrue: [ 
+		[ y < 400 ] whileTrue: [ 
+			| newMorph |
+			newMorph := AtomMorphArea new.
+			newMorph bounds: (x @ y extent: 200 @ 200).
+			mainMorph addMorph: newMorph.
+			morphs add: newMorph.
+			y := y + 200 ].
+		x := x + 200.
+		y := 0 ].
+	AtomManager on: mainMorph
 ]
 
 { #category : #'instance creation' }
 AtomApp >> open [
 	morphs first openInWindow.
-	morphs first window extent: 505 @ 530.
+	morphs first window extent: 410 @ 432.
 	morphs first extent: 1@1
 ]

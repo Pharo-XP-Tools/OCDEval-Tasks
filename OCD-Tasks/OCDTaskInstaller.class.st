@@ -40,13 +40,22 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask1 [
 		
 	linksRegistry registerPermaLink: aPermaLink.	
 	
-	nodes := MetalinkTargetResolver resolveASTLookupFor: aSlotOrVar option: aPermaLink persistenceType.
+	nodes := (aSlotOrVar accessingNodesFor: aPermaLink persistenceType) asIdentitySet.
 	aPermaLink link property: #control whenChangedDo: [aPermaLink link nodes add:nodes asArray first methodNode].
 	aPermaLink targetObjectOrClass link: aPermaLink link toNodes: nodes.'.
 	
 	Object compile: 'link: aMetaLink toNodes: nodes
 	aMetaLink control: #before.
 	nodes do: [ :node | self link: aMetaLink toAST: node ]'.
+	
+	MetaLink compile: 'initialize
+	self class initializeSlots: self.
+	nodes := IdentitySet new.
+	control := #before.
+	selector := #value.
+	arguments := #().
+	options := Set new.
+	self parseOptions: self class defaultOptions.'.
 	
 	self removeClassTag: #'Task2'.
 	TestColor removeFromSystem.	
@@ -131,13 +140,22 @@ OCDTaskInstaller class >> installAndConfigureImageForTask1 [
 		
 	linksRegistry registerPermaLink: aPermaLink.	
 	
-	nodes := MetalinkTargetResolver resolveASTLookupFor: aSlotOrVar option: aPermaLink persistenceType.
+	nodes := (aSlotOrVar accessingNodesFor: aPermaLink persistenceType) asIdentitySet.
 	aPermaLink link property: #control whenChangedDo: [aPermaLink link nodes add:nodes asArray first methodNode].
 	aPermaLink targetObjectOrClass link: aPermaLink link toNodes: nodes.'.
 	
 	Object compile: 'link: aMetaLink toNodes: nodes
 	aMetaLink control: #before.
 	nodes do: [ :node | self link: aMetaLink toAST: node ]'.
+	
+	MetaLink compile: 'initialize
+	self class initializeSlots: self.
+	nodes := IdentitySet new.
+	control := #before.
+	selector := #value.
+	arguments := #().
+	options := Set new.
+	self parseOptions: self class defaultOptions.'.
 	
 	self removeClassTag: #'Task2'.
 	TestColor removeFromSystem.	

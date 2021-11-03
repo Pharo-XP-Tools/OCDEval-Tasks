@@ -26,41 +26,14 @@ OCDTaskInstaller class >> configureForTaskNamed: aString [
 
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> installAndConfigureImageForOCDTask1 [
+
 	<script>
-	Object subclass: #MetaLink
-	uses: TObservable
-	slots: { #arguments. #condition. #conditionArguments. #control => ObservableSlot. #level. #metaObject. #nodes. #selector. #options }
-	classVariables: {  }
-	package: 'Reflectivity-Core'.
-	
-	MetaLinkInstaller compile: 'registerAndInstallPermaLink: aPermaLink forTarget: aSlotOrVar
-	| nodes |
-	(linksRegistry canReinstallPermaLink: aPermaLink)
-		ifFalse: [ ^ self ].
-		
-	linksRegistry registerPermaLink: aPermaLink.	
-	
-	nodes := (aSlotOrVar accessingNodesFor: aPermaLink persistenceType) asIdentitySet.
-	aPermaLink link property: #control whenChangedDo: [aPermaLink link nodes add:nodes asArray first methodNode].
-	aPermaLink targetObjectOrClass link: aPermaLink link toNodes: nodes.'.
-	
-	Object compile: 'link: aMetaLink toNodes: nodes
-	aMetaLink control: #before.
-	nodes do: [ :node | self link: aMetaLink toAST: node ]'.
-	
-	MetaLink compile: 'initialize
-	self class initializeSlots: self.
-	nodes := IdentitySet new.
-	control := #before.
-	selector := #value.
-	arguments := #().
-	options := Set new.
-	self parseOptions: self class defaultOptions.'.
-	
-	self removeClassTag: #'Task2'.
-	TestColor removeFromSystem.	
+	self installTask1.
+
+	self removeClassTag: #Task2.
+	TestColor removeFromSystem.
 	self removeTaskInstaller.
-	self configureForOCDTaskNamed: 'Task1'.
+	self configureForOCDTaskNamed: 'Task1'
 ]
 
 { #category : #'as yet unclassified' }
@@ -90,37 +63,14 @@ OCDTaskInstaller class >> installAndConfigureImageForOCDTask2a [
 ]
 
 { #category : #'as yet unclassified' }
-OCDTaskInstaller class >> installAndConfigureImageForOCDTask2b [ 
-	<script>
+OCDTaskInstaller class >> installAndConfigureImageForOCDTask2b [
 
-	Color indexedColors at: 82 put: (TestColor r: 0.19941348973607037 g: 1.0 b: 0.0 alpha: 1.0).
-	MetaLink package addClass: TestColor.
-	
-	AtomManager compile: 'initialize 
-	AtomApp announcer when: AtomColorChangeRequest send: #requestColorChange: to: self.
-	AtomApp announcer when: AtomSelectionRequest send: #requestSelection: to: self.
-	AtomApp announcer when: AtomDeselectionRequest send: #requestDeselection: to: self'.
-	
-	AtomMorph compile: 'handleMouseMove: event
-	negated
-		ifTrue: [ ^ self ].
-	self isSelected
-		ifTrue: [ ^ self ].
-	self changeColor'.
-	
-	AtomMorph compile: 'handlesMouseDown: event
-	^ true'.	
-	
-	AtomMorph compile: 'mouseDown: event
-	event redButtonChanged
-		ifTrue: [	^ self ].
-	self inspect'.		
-	
-	AtomApp reset.
-	
-	self removeClassTag: #'Task1'.	
+	<script>
+	self installTask2b.
+
+	self removeClassTag: #Task1.
 	self removeTaskInstaller.
-	self configureForOCDTaskNamed: 'Task2b'.
+	self configureForOCDTaskNamed: 'Task2b'
 ]
 
 { #category : #'as yet unclassified' }
@@ -220,16 +170,115 @@ OCDTaskInstaller class >> installAndConfigureImageForTask2b [
 ]
 
 { #category : #'as yet unclassified' }
+OCDTaskInstaller class >> installTask1 [
+
+	"Install task 1. Doesn't configure logging."
+
+	Object
+		subclass: #MetaLink
+		uses: TObservable
+		slots: { 
+				#arguments.
+				#condition.
+				#conditionArguments.
+				(#control => ObservableSlot).
+				#level.
+				#metaObject.
+				#nodes.
+				#selector.
+				#options }
+		classVariables: {  }
+		package: 'Reflectivity-Core'.
+
+	MetaLinkInstaller compile:
+		'registerAndInstallPermaLink: aPermaLink forTarget: aSlotOrVar
+	| nodes |
+	(linksRegistry canReinstallPermaLink: aPermaLink)
+		ifFalse: [ ^ self ].
+		
+	linksRegistry registerPermaLink: aPermaLink.	
+	
+	nodes := (aSlotOrVar accessingNodesFor: aPermaLink persistenceType) asIdentitySet.
+	aPermaLink link property: #control whenChangedDo: [aPermaLink link nodes add:nodes asArray first methodNode].
+	aPermaLink targetObjectOrClass link: aPermaLink link toNodes: nodes.'.
+
+	Object compile: 'link: aMetaLink toNodes: nodes
+	aMetaLink control: #before.
+	nodes do: [ :node | self link: aMetaLink toAST: node ]'.
+
+	MetaLink compile: 'initialize
+	self class initializeSlots: self.
+	nodes := IdentitySet new.
+	control := #before.
+	selector := #value.
+	arguments := #().
+	options := Set new.
+	self parseOptions: self class defaultOptions.'
+]
+
+{ #category : #'as yet unclassified' }
+OCDTaskInstaller class >> installTask2b [
+
+	"Install task 2b. Doesn't configure logging."
+
+	Color indexedColors at: 82 put: (TestColor
+			 r: 0.19941348973607037
+			 g: 1.0
+			 b: 0.0
+			 alpha: 1.0).
+	MetaLink package addClass: TestColor.
+
+	AtomManager compile: 'initialize 
+	AtomApp announcer when: AtomColorChangeRequest send: #requestColorChange: to: self.
+	AtomApp announcer when: AtomSelectionRequest send: #requestSelection: to: self.
+	AtomApp announcer when: AtomDeselectionRequest send: #requestDeselection: to: self'.
+
+	AtomMorph compile: 'handleMouseMove: event
+	negated
+		ifTrue: [ ^ self ].
+	self isSelected
+		ifTrue: [ ^ self ].
+	self changeColor'.
+
+	AtomMorph compile: 'handlesMouseDown: event
+	^ true'.
+
+	AtomMorph compile: 'mouseDown: event
+	event redButtonChanged
+		ifTrue: [	^ self ].
+	self inspect'.
+
+	AtomApp reset
+]
+
+{ #category : #'as yet unclassified' }
+OCDTaskInstaller class >> installTasks [
+
+	"Install tasks. Doesn't configure logging."
+
+	self installTask1.
+	self installTask2b
+]
+
+{ #category : #'as yet unclassified' }
 OCDTaskInstaller class >> removeClassTag: aSymbol [
-	|tag|	
+
+	| tag |
 	tag := self package classTagNamed: aSymbol.
 	tag classes do: #removeFromSystem.
-	self package removeClassTag: aSymbol 
+	self package removeClassTag: aSymbol
 ]
 
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> removeTaskInstaller [
-	(self confirm: 'Remove installation class from system?') ifFalse:[^self].
+
+	(self confirm: 'Remove installation class from system?') ifFalse: [ 
+		^ self ].
+	self removeTaskInstallerSilently
+]
+
+{ #category : #'as yet unclassified' }
+OCDTaskInstaller class >> removeTaskInstallerSilently [
+
 	self removeFromSystem
-	
 ]

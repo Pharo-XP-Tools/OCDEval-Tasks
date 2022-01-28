@@ -4,6 +4,15 @@ Class {
 	#category : #'OCD-Tasks-Settings'
 }
 
+{ #category : #tests }
+OCDTaskInstaller class >> buildValidator [
+	|validatorClass|
+	validatorClass := Object newAnonymousSubclass.
+	validatorClass compile: (self class >> #testTask1Validity) sourceCode.
+	validatorClass compile: (self class >> #testTask2Validity) sourceCode.
+	^validatorClass new
+]
+
 { #category : #'as yet unclassified' }
 OCDTaskInstaller class >> configureCommonForTaskNamed: aString [
 	Smalltalk at: #DSSpy ifAbsent: [ ^ self ].
@@ -281,4 +290,20 @@ OCDTaskInstaller class >> removeTaskInstaller [
 OCDTaskInstaller class >> removeTaskInstallerSilently [
 
 	self removeFromSystem
+]
+
+{ #category : #tests }
+OCDTaskInstaller class >> testTask1Validity [
+	|class method source test|
+	class := (Smalltalk at: #MetalinkStrangeNodeTest).
+	method := class >> #testCollectionContents.
+	source := method sourceCode.
+	test := ([method valueWithReceiver: class new arguments: #()] on: Error do:[nil]) notNil.
+	^{ source. test }
+]
+
+{ #category : #tests }
+OCDTaskInstaller class >> testTask2Validity [
+
+	^ (Color indexedColors at: 82) class = Color
 ]

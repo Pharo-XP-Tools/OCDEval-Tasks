@@ -10,6 +10,7 @@ OCDTaskInstaller class >> buildValidator [
 	validatorClass := Object newAnonymousSubclass.
 	validatorClass compile: (self class >> #testTask1Validity) sourceCode.
 	validatorClass compile: (self class >> #testTask2Validity) sourceCode.
+	validatorClass compile: ('inspectionMeta ^StRawInspection on: self').
 	^validatorClass new
 ]
 

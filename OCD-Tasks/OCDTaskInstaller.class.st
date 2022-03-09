@@ -295,11 +295,11 @@ OCDTaskInstaller class >> removeTaskInstallerSilently [
 
 { #category : #tests }
 OCDTaskInstaller class >> testTask1Validity [
-	|class method source test|
+	|class methodSelector source test|
 	class := (Smalltalk at: #MetalinkStrangeNodeTest).
-	method := class >> #testCollectionContents.
-	source := method sourceCode.
-	test := ([method valueWithReceiver: class new arguments: #()] on: Error do:[nil]) notNil.
+	methodSelector := #testCollectionContents.
+	source := (class >> methodSelector) sourceCode.
+	test := ([class new setUp; perform: methodSelector; tearDown] on: Exception do:[nil]) notNil.
 	^{ source. test }
 ]
 

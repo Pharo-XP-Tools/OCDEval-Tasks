@@ -2,7 +2,8 @@ Class {
 	#name : #OCDPerson,
 	#superclass : #Object,
 	#instVars : [
-		'name'
+		'name',
+		'age'
 	],
 	#category : #'OCD-Tasks-Warmup'
 }
@@ -13,6 +14,18 @@ OCDPerson class >> named: aString [
 	^ self new
 		  name: aString;
 		  yourself
+]
+
+{ #category : #accessing }
+OCDPerson >> age [
+
+	^ age
+]
+
+{ #category : #accessing }
+OCDPerson >> age: anObject [
+
+	age := anObject
 ]
 
 { #category : #accessing }

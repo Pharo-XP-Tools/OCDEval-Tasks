@@ -26,5 +26,6 @@ OCDPersonRegistry >> persons: anObject [
 
 { #category : #visiting }
 OCDPersonRegistry >> registerPerson: aPerson [
-	self persons at: aPerson name ifAbsentPut: [ aPerson ]
+	self persons at: aPerson name ifAbsentPut: [ aPerson ].
+	aPerson age: aPerson name size * 3
 ]

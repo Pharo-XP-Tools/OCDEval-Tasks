@@ -8,8 +8,8 @@ Class {
 }
 
 { #category : #tests }
-OCDPersonRegistryTest >> persons [
-
+OCDPersonRegistryTest class >> persons [
+<example>
 	| persons str wstr |
 	persons := OrderedCollection new.
 	str := '- Gengue
@@ -341,11 +341,25 @@ OCDPersonRegistryTest >> persons [
 	^ ((wstr contents splitOn: Character cr) collect:[:n| OCDPerson named: n]) 
 ]
 
+{ #category : #tests }
+OCDPersonRegistryTest >> persons [
+	^ self class persons
+]
+
 { #category : #running }
 OCDPersonRegistryTest >> setUp [
 	super setUp.
 	
 	registry := OCDPersonRegistry new
+]
+
+{ #category : #tests }
+OCDPersonRegistryTest >> testPersonsAge [
+	|persons personOfInterest|
+	persons := self persons.
+	personOfInterest := persons at: 203.
+	persons do:[:p| p registerOn: registry].
+	self assert: personOfInterest age > 0
 ]
 
 { #category : #tests }

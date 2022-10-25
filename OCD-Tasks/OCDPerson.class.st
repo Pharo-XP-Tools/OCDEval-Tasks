@@ -29,13 +29,13 @@ OCDPerson >> age: anObject [
 ]
 
 { #category : #accessing }
-OCDPerson >> name [
+OCDPerson >> personName [
 
 	^ name
 ]
 
 { #category : #accessing }
-OCDPerson >> name: anObject [
+OCDPerson >> personName: anObject [
 
 	name := anObject
 ]

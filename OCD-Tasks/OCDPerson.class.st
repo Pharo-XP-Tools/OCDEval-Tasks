@@ -2,7 +2,7 @@ Class {
 	#name : #OCDPerson,
 	#superclass : #Object,
 	#instVars : [
-		'name',
+		'personName',
 		'age'
 	],
 	#category : #'OCD-Tasks-Warmup'
@@ -12,7 +12,7 @@ Class {
 OCDPerson class >> named: aString [
 
 	^ self new
-		  name: aString;
+		  personName: aString;
 		  yourself
 ]
 
@@ -31,18 +31,19 @@ OCDPerson >> age: anObject [
 { #category : #accessing }
 OCDPerson >> personName [
 
-	^ name
+	^ personName
 ]
 
 { #category : #accessing }
 OCDPerson >> personName: anObject [
 
-	name := anObject
+	personName := anObject
 ]
 
 { #category : #printing }
 OCDPerson >> printOn: aStream [
-	aStream << self name
+
+	aStream << ((self readSlotNamed: #personName) ifNil: [ 'Unnamed person' ])
 ]
 
 { #category : #hooks }

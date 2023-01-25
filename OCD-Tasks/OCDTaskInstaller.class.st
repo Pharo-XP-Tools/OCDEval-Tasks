@@ -8,8 +8,8 @@ Class {
 OCDTaskInstaller class >> buildValidator [
 	|validatorClass|
 	validatorClass := Object newAnonymousSubclass.
-	validatorClass compile: (self class >> #testTask1Validity) sourceCode.
-	validatorClass compile: (self class >> #testTask2Validity) sourceCode.
+	validatorClass compile: (self class >> #testProgramComprehensionTaskValidity) sourceCode.
+	validatorClass compile: (self class >> #testDebuggingTaskValidity) sourceCode.
 	validatorClass compile: ('inspectionMeta ^StRawInspection on: self').
 	^validatorClass new
 ]
@@ -294,17 +294,17 @@ OCDTaskInstaller class >> removeTaskInstallerSilently [
 ]
 
 { #category : #tests }
-OCDTaskInstaller class >> testTask1Validity [
+OCDTaskInstaller class >> testDebuggingTaskValidity [
+
+	^ (Color indexedColors at: 82) class = Color
+]
+
+{ #category : #tests }
+OCDTaskInstaller class >> testProgramComprehensionTaskValidity [
 	|class methodSelector source test|
 	class := (Smalltalk at: #MetalinkStrangeNodeTest).
 	methodSelector := #testCollectionContents.
 	source := (class >> methodSelector) sourceCode.
 	test := ([class new setUp; perform: methodSelector; tearDown] on: Exception do:[nil]) notNil.
 	^{ source. test }
-]
-
-{ #category : #tests }
-OCDTaskInstaller class >> testTask2Validity [
-
-	^ (Color indexedColors at: 82) class = Color
 ]

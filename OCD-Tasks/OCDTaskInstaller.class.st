@@ -14,7 +14,7 @@ OCDTaskInstaller class >> buildValidator [
 	^validatorClass new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #installing }
 OCDTaskInstaller class >> installTask2b [
 
 	"Install task 2b. Doesn't configure logging."
@@ -49,7 +49,7 @@ OCDTaskInstaller class >> installTask2b [
 	AtomApp reset
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #installing }
 OCDTaskInstaller class >> installTasks [
 
 	"Install tasks. Doesn't configure logging."
@@ -57,7 +57,7 @@ OCDTaskInstaller class >> installTasks [
 	self installTask2b
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'removing classes' }
 OCDTaskInstaller class >> removeClassTag: aSymbol [
 
 	| tag |
@@ -66,7 +66,7 @@ OCDTaskInstaller class >> removeClassTag: aSymbol [
 	self package removeClassTag: aSymbol
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'removing classes' }
 OCDTaskInstaller class >> removeTaskInstallerSilently [
 
 	self removeFromSystem

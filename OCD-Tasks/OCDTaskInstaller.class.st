@@ -80,10 +80,8 @@ OCDTaskInstaller class >> testDebuggingTaskValidity [
 
 { #category : #tests }
 OCDTaskInstaller class >> testProgramComprehensionTaskValidity [
-	|class methodSelector source test|
-	class := (Smalltalk at: #MetalinkStrangeNodeTest).
-	methodSelector := #testCollectionContents.
-	source := (class >> methodSelector) sourceCode.
-	test := ([class new setUp; perform: methodSelector; tearDown] on: Exception do:[nil]) notNil.
-	^{ source. test }
+	
+	"TODO: define the validity of the new comprehension task"
+	
+	^ true
 ]

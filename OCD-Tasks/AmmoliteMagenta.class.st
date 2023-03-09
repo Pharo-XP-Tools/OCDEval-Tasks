@@ -1,7 +1,7 @@
 Class {
 	#name : #AmmoliteMagenta,
 	#superclass : #Object,
-	#category : #'OCD-Tasks-Task3'
+	#category : #'OCD-Tasks-Task1'
 }
 
 { #category : #examples }

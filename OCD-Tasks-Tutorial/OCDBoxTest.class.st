@@ -11,7 +11,7 @@ OCDBoxTest >> testMultipleBoxes [
 	"We create a hundred boxes here, that we put into a collection"
 	boxes := OrderedCollection new.
 	100 timesRepeat: [ boxes add: OCDBox new ].
-	
+	self halt.
 	"Let's take a single, random box"
 	aBox := boxes atRandom.
 	

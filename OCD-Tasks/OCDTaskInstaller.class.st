@@ -32,6 +32,7 @@ OCDTaskInstaller class >> installTasks [
 		].
 		^ morph.
 	'.
+	(self environment at: #LightsOutGame) removeSelector: #close.
 ]
 
 { #category : #tests }

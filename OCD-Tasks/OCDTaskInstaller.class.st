@@ -18,34 +18,36 @@ OCDTaskInstaller class >> buildValidator [
 OCDTaskInstaller class >> installTasks [
 
 	"Debugging task"
-	SimpleSwitchMorph compile: 'onColor
-		^ onColor.
+	SimpleSwitchMorph class slots: #( #corner ).
+	SimpleSwitchMorph class slots: #( #count ).
+	SimpleSwitchMorph class compile: 'corner
+	count ifNil: [ count := 0 ].
+	count < 100 ifTrue: [ 
+		count := count + 1.
+		^ corner 
+	].
+	count := 0.
+	corner := { 1 @ 1 . 1 @ LOPane size . LOPane size @ 1 . LOPane size @ LOPane size } atRandom.
+	corner := (corner - 1) * LOCell size + (6 @ 6).
+	^ corner 
 	'.
-	SimpleSwitchMorph compile: 'offColor
-		^ offColor.
+	SimpleSwitchMorph compile: 'turnOn
+	self color: onColor
 	'.
-	SimpleSwitchMorph class compile: 'new
-		| morph |
-		morph := super new.
-		LOCell allInstances size = 48 ifTrue: [
-			morph onColor: morph offColor.
-		].
-		^ morph.
+	SimpleSwitchMorph compile: 'position: aPoint
+	super position: aPoint.
+	aPoint = SimpleSwitchMorph corner ifTrue: [
+		onColor := offColor.
+	]
 	'.
 	SimpleSwitchMorph removeSelector: #isOn.
 	SimpleSwitchMorph removeSelector: #toggleState.
-	(self environment at: #LightsOutGame) removeSelector: #close.
 ]
 
 { #category : #tests }
 OCDTaskInstaller class >> testDebuggingTaskValidity [
 
-	| loCellClass cell |
-	loCellClass := self environment at: #LOCell.
-	cell := loCellClass allInstances at: 48.
-	^ SimpleSwitchMorph class selectors isEmpty or: [ 
-		  cell onColor ~= cell offColor 
-	]
+	^ (SimpleSwitchMorph includesSelector: #position:) not
 ]
 
 { #category : #tests }

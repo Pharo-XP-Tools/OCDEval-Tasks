@@ -32,6 +32,8 @@ OCDTaskInstaller class >> installTasks [
 		].
 		^ morph.
 	'.
+	SimpleSwitchMorph removeSelector: #isOn.
+	SimpleSwitchMorph removeSelector: #toggleState.
 	(self environment at: #LightsOutGame) removeSelector: #close.
 ]
 

@@ -19,24 +19,29 @@ OCDTaskInstaller class >> installTasks [
 
 	"Debugging task"
 	SimpleSwitchMorph class slots: #( #corner #count ).
-	SimpleSwitchMorph class compile: 'corner
-	count ifNil: [ count := 0 ].
-	count < 100 ifTrue: [ 
-		count := count + 1.
-		^ corner 
-	].
-	count := 0.
-	corner := { 1 @ 1 . 1 @ LOPane size . LOPane size @ 1 . LOPane size @ LOPane size } atRandom.
+	SimpleSwitchMorph class compile: 'setCorner
+	| size |
+	size := LOPane size.
+	corner := { 1 @ 1 . 1 @ size . size @ 1 . size @ size } atRandom.
 	corner := (corner - 1) * LOCell size + (6 @ 6).
-	^ corner 
+	^ corner
+	'.
+	SimpleSwitchMorph class compile: 'getCorner
+	| size |
+	size := LOPane size * LOPane size.
+	count ifNil: [ count := 0 ].
+	count := count + 1.
+	count = 1 ifTrue: [ ^ self setCorner ].
+	count = size ifTrue: [ count := 0 ].
+	^ corner
 	'.
 	SimpleSwitchMorph compile: 'turnOn
 	self color: onColor
 	'.
 	SimpleSwitchMorph compile: 'position: aPoint
 	super position: aPoint.
-	aPoint = SimpleSwitchMorph corner ifTrue: [
-		onColor := offColor.
+	aPoint = SimpleSwitchMorph getCorner ifTrue: [
+	onColor := offColor.
 	]
 	'.
 	SimpleSwitchMorph removeSelector: #isOn.

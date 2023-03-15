@@ -18,8 +18,7 @@ OCDTaskInstaller class >> buildValidator [
 OCDTaskInstaller class >> installTasks [
 
 	"Debugging task"
-	SimpleSwitchMorph class slots: #( #corner ).
-	SimpleSwitchMorph class slots: #( #count ).
+	SimpleSwitchMorph class slots: #( #corner #count ).
 	SimpleSwitchMorph class compile: 'corner
 	count ifNil: [ count := 0 ].
 	count < 100 ifTrue: [ 

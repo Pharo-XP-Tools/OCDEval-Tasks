@@ -40,7 +40,7 @@ OCDTaskInstaller class >> installTasks [
 	'.
 	SimpleSwitchMorph compile: 'position: aPoint
 	super position: aPoint.
-	aPoint = sel class getCorner ifTrue: [
+	aPoint = self class getCorner ifTrue: [
 	onColor := offColor.
 	]
 	'.

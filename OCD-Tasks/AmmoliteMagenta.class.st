@@ -6,10 +6,9 @@ Class {
 
 { #category : #examples }
 AmmoliteMagenta class >> run [
+
 	<example>
-	AMGroupBuilderPresenter openOn: {
-		(STON fromString: 
-			(STON fromString: AmmoliteMagentaTaskConfiguration new taskData) asString
-		)
-	}
+	AMGroupBuilderPresenter openOn: { (STON fromString:
+			 (STON fromString: AmmoliteMagentaTaskConfiguration new taskData)
+				 asString) }
 ]

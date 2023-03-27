@@ -22,10 +22,5 @@ AmmoliteMagenta class >> buildExample [
 AmmoliteMagenta class >> run [
 
 	<example>
-	AMGroupBuilderPresenter openOn: { (AMPromotion new
-			 name: 'OCRE';
-			 students: (STON fromString:
-						  (STON fromString:
-								   AmmoliteMagentaTaskConfiguration new taskData) asString);
-			 yourself) }
+	AMGroupBuilderPresenter openOn: self buildExample 
 ]

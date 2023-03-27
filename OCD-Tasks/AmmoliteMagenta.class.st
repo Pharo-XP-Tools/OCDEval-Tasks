@@ -8,7 +8,10 @@ Class {
 AmmoliteMagenta class >> run [
 
 	<example>
-	AMGroupBuilderPresenter openOn: { (STON fromString:
-			 (STON fromString: AmmoliteMagentaTaskConfiguration new taskData)
-				 asString) }
+	AMGroupBuilderPresenter openOn: { (AMPromotion new
+			 name: 'OCRE';
+			 students: (STON fromString:
+						  (STON fromString:
+								   AmmoliteMagentaTaskConfiguration new taskData) asString);
+			 yourself) }
 ]

@@ -5,22 +5,64 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-AmmoliteMagenta class >> buildExample [
+AmmoliteMagenta class >> promotion [
 
-	|data promotion students|
-	data := AmmoliteMagentaTaskConfiguration new taskData2.
-	students := (data splitOn: Character cr) collect:[:studentDataString|
-		AMStudent readFromDataString: studentDataString].
+	| promotion students|
+	
 	promotion := AMPromotion new.
 	promotion name: 'OCRE xp'.
+	
+	students := (self students splitOn: Character cr) collect: [ :studentDataString | 
+		AMStudent readFromString: studentDataString 
+	].
 	promotion students: students.
-	^Array with: promotion
+	
+	^ Array with: promotion
 		
 ]
 
 { #category : #examples }
 AmmoliteMagenta class >> run [
 
-	<example>
-	AMGroupBuilderPresenter openOn: self buildExample 
+	<script: 'self run'>
+	AMGroupBuilderPresenter openOn: self promotion 
+]
+
+{ #category : #'as yet unclassified' }
+AmmoliteMagenta class >> students [
+	^'Nath -
+Adèle +
+William -
+Marguerite 
+Valérie 
+Danielle 
+Margot +
+Diane 
+Thibault -
+Thomas +
+Margaud -
+Julie 
+Charles-Thibault +
+Alix +
+Philippine 
+Victoire -
+Frédérique 
+Adèle +
+Constance +
+Alex 
+Isaac-Guillaume +
+Élisabeth +
+Guy -
+Charles -
+Raymond-Tristan 
+Inès-Hélène 
+Jean +
+Alex +
+Henri +
+Jules -
+Dorothée 
+Alexandria 
+Jacques
+Adèle + 
+Catherine'
 ]

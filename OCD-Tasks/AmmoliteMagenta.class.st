@@ -4,7 +4,7 @@ Class {
 	#category : #'OCD-Tasks-Task1'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 AmmoliteMagenta class >> promotion [
 
 	| promotion students|
@@ -25,10 +25,10 @@ AmmoliteMagenta class >> promotion [
 AmmoliteMagenta class >> run [
 
 	<script: 'self run'>
-	AMGroupBuilderPresenter openOn: self promotion 
+	AMGroupBuilderPresenter openOn: self promotion
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 AmmoliteMagenta class >> students [
 	^'Nath -
 Adèle +

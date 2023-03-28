@@ -8,8 +8,8 @@ Class {
 OCDTaskInstaller class >> buildValidator [
 	|validatorClass|
 	validatorClass := Object newAnonymousSubclass.
-	validatorClass compile: (self class >> #testProgramComprehensionTaskValidity) sourceCode.
-	validatorClass compile: (self class >> #testDebuggingTaskValidity) sourceCode.
+	validatorClass compile: (self class >> #testAmmoliteValidity) sourceCode.
+	validatorClass compile: (self class >> #testLightsOutValidity) sourceCode.
 	validatorClass compile: ('inspectionMeta ^StRawInspection on: self').
 	^validatorClass new
 ]
@@ -49,15 +49,15 @@ OCDTaskInstaller class >> installTasks [
 ]
 
 { #category : #tests }
-OCDTaskInstaller class >> testDebuggingTaskValidity [
-
-	^ (SimpleSwitchMorph includesSelector: #position:) not
+OCDTaskInstaller class >> testAmmoliteValidity [
+	
+	| student |
+	student := AMStudent readFromDataString: 'Test + '.
+	^ { '+' . '-' } includes: student marker.
 ]
 
 { #category : #tests }
-OCDTaskInstaller class >> testProgramComprehensionTaskValidity [
-	
-	"TODO: define the validity of the new comprehension task"
-	
-	^ true
+OCDTaskInstaller class >> testLightsOutValidity [
+
+	^ (SimpleSwitchMorph includesSelector: #position:) not
 ]

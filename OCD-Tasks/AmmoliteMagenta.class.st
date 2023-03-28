@@ -13,7 +13,7 @@ AmmoliteMagenta class >> promotion [
 	promotion name: 'OCRE xp'.
 	
 	students := (self students splitOn: Character cr) collect: [ :studentDataString | 
-		AMStudent readFromString: studentDataString 
+		AMStudent readFromDataString: studentDataString 
 	].
 	promotion students: students.
 	
